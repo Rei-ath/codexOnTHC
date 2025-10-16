@@ -780,7 +780,7 @@ fn slash_init_skips_when_project_doc_exists() {
     std::fs::write(&existing_path, "existing instructions").unwrap();
     chat.config.cwd = tempdir.path().to_path_buf();
 
-    chat.dispatch_command(SlashCommand::Init);
+    chat.dispatch_command(CommandInvocation::new(SlashCommand::Init, ""));
 
     match op_rx.try_recv() {
         Err(TryRecvError::Empty) => {}
